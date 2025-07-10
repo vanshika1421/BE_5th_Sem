@@ -22,7 +22,7 @@ let product=[
 
 
 let account_balance = 200000;
-buyProduct("IPhone" , function(err , amount) {
+buyProduct("IPhone" , function(err , amount) {  
 // console.log("product is purchased");
 if(err) return console.log(err)
     console.log(amount);
