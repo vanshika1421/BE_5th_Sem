@@ -5,15 +5,18 @@ const User = require("../model/user"); // make sure path is correct
 module.exports.postLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log("Login attempt:", email, password);
 
     // check if user exists
     const user = await User.findOne({ email });
+    console.log("User found:", user);
     if (!user) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
 
     // compare hashed password
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("Password match:", isMatch);
     if (!isMatch) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }

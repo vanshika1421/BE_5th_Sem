@@ -1,17 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const BlogPost = new Schema({
-  title: String,
-  body: String,
-  date: Date
+
+const UserSchema = new Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true }
 });
 
-BlogPost.virtual('id').get(function () {
+UserSchema.virtual('id').get(function () {
   return this._id.toHexString();
 });
 
-BlogPost.set('toJSON', {
+UserSchema.set('toJSON', {
   virtuals: true,
 });
 
-module.exports = mongoose.model('Blogs', BlogPost);
+module.exports = mongoose.model('User', UserSchema);

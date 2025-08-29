@@ -1,20 +1,23 @@
-const User=require("../model/user");
-module.exports.postAddUsers=async (req,res)=>{
+const User = require("../model/user");
+const bcrypt = require("bcryptjs");
+module.exports.postAddUsers = async (req, res) => {
     let name = req.body.name;
     let email = req.body.email;
     let password = req.body.password;
+    // Hash the password before saving
+    const hashedPassword = await bcrypt.hash(password, 10);
     let user = {
-        name : name,
-        email : email,
-        password : password
+        name: name,
+        email: email,
+        password: hashedPassword
     }
-    let newUser = new User(user)
-    await newUser.save()
+    let newUser = new User(user);
+    await newUser.save();
     res.json({
-        success : true,
-        message : "user added successfully",
-        data : newUser
-    })
+        success: true,
+        message: "user added successfully",
+        data: newUser
+    });
 }
 
 module.exports.getAllUsers=async (req,res)=>{

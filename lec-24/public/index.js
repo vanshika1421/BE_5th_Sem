@@ -15,7 +15,7 @@ let response = await fetch("/api/users", {
         "Content-Type": "application/json"
     },
     body: JSON.stringify({
-        username: username,
+        name: username,
         email: email,
         password: password
     })
@@ -25,6 +25,7 @@ if (!response.ok) {
 } else {
     let data = await response.json();
     console.log(data);
+    console.log("Signup successful");
 }
 
 }
