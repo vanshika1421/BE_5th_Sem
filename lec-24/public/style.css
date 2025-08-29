@@ -1,0 +1,23 @@
+/* Add display flex for header/navbar items */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+}
+
+.nav-list {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link-item {
+  display: flex;
+  align-items: center;
+}
