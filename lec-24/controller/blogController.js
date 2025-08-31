@@ -2,12 +2,15 @@ const User=require("../model/user");
 const Blog=require("../model/blog");
 
 
-module.exports.postAddBlog =async (req, res) => {
+module.exports.postAddBlog = async (req, res) => {
+    console.log('Blog POST request body:', req.body);
+    console.log('User ID from middleware:', req.userId);
     let title = req.body.title;
     let body = req.body.body;
     let userId = req.userId; // from middleware
     let user = await User.findById(userId);
     if (!user) {
+        console.log('No user found for userId:', userId);
         return res.json({
             success: false,
             message: "Invalid User"
@@ -24,6 +27,7 @@ module.exports.postAddBlog =async (req, res) => {
     if (!user.blogs) user.blogs = [];
     user.blogs.push(newBlog._id);
     await user.save();
+    console.log('New blog saved:', newBlog);
     res.json({
         success: true,
         message: "blog added successfully",

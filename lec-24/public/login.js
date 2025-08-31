@@ -30,6 +30,9 @@ loginForm.addEventListener('submit', async function(e) {
     if (!response.ok) {
        console.log("Failed");
     } else {
+        if (data.token) {
+            localStorage.setItem('token', data.token);
+        }
         console.log(data);
         console.log("Login successful");
     }

@@ -15,7 +15,7 @@ let userRoutes = require('./routes/userRoutes');
 let authRoutes= require("./routes/auth")
 
 // create
-app.use('/api/blogs', isLogin, blogRoutes);
+app.use('/api/blog', isLogin, blogRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/auth',authRoutes);
 // Login route to generate JWT token

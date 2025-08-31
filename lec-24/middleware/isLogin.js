@@ -21,7 +21,7 @@ const isLogin = (req, res, next) => {
         }
 
         // Token verify karo
-        const decoded = jwt.verify(token, "SECRET_KEY"); // same key jo login me use kiya
+        const decoded = jwt.verify(token, "defaultSecret"); // same key jo login me use kiya
         req.userId = decoded.userId; // userId ko request object me set kar diya
         next(); // next route handler call karo
     } catch (err) {
